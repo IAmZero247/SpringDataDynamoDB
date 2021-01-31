@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="fragments/header :: head"> </th:block>
+</head>
+<body>
+<div class="container">
+    <br>
+    <nav>  <th:block th:replace="fragments/nav :: nav"></th:block>   </nav>
+    <br>
+
+
+
+
+    <h1>Customer List </h1>
+    <br>
+    <table class="table table-striped">
+        <thead>
+        <th scope="row">#ID</th>
+        <th scope="row">FirstName</th>
+        <th scope="row">LastName</th>
+        </thead>
+        <tbody>
+            <tr th:each="customer : ${customers}">
+                <td th:text="${customer.id}"></td>
+                <td th:text="${customer.firstName}"></td>
+                <td th:text="${customer.lastName}"></td>
+                <td>
+                    <a class="btn btn-primary" th:href="@{/__${tenantId}__/updateCustomerPage/__${customer.id}__}"  role="button" >Update</a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" th:href="@{/__${tenantId}__/deleteCustomer/__${customer.id}__}" role="button" >Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <a class="btn btn-primary"  th:href="@{${hrefAddCustomerPage}}"  role="button" >Add New Customer</a>
+    <br>
+
+
+    <footer>
+        <th:block th:include="fragments/footer :: footer"></th:block>
+    </footer>
+
+</div>
+</body>
+</html>
